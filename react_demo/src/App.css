@@ -25,23 +25,38 @@
   color: white
 }
 
+
 .search_box input{
   border: 0;
   outline:0;
   margin-right: 0.2rem;
   padding: 0.3rem;
   border-radius: 1rem;
+  padding-left: 7rem; /* Increase padding */
+  padding-right: 7rem; /* Increase padding */
+  font-size: 1.2rem; /* Increase font size */
+  height: 2rem; /* Specify height */
 }
 
 .search_box button{
   border: 0;
   outline:0;
   background-color: white;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: .5rem;
+  padding-left: .8rem;
+  padding-right: .8rem;
   margin-left: 0.5rem;
-
   border-radius: 1rem;
+}
+.search_box button:hover {
+  background-color: #333; /* Changes background color when hovered */
+  color: #f2f2f2; /* Changes text color when hovered */
+}
+.search_box button:active {
+  background-color: #555; /* Changes background color when clicked */
+}
+.search_box button:focus {
+  outline: none; /* Removes focus outline */
 }
 
 .search_nav {
@@ -50,8 +65,66 @@
   align-items: center;
 }
 
-.genre_buttons {
-  display: flex;
-  gap: 10px;
-  margin-right: 10px;
+
+
+.genre_buttons button {
+  background-color: #f2f2f2; /* Default background color */
+  color: #333; /* Default text color */
+  border: none; /* Removes default border */
+  padding: 10px 20px; /* Add padding */
+  cursor: pointer; /* Changes cursor to hand when hovering */
+  transition: background-color 0.3s ease; /* Smooth transition effect */
+  border-radius: 5px; /* Rounded corners */
+  margin: .3rem;
+}
+
+.genre_buttons button:hover {
+  background-color: #333; /* Changes background color when hovered */
+  color: #f2f2f2; /* Changes text color when hovered */
+}
+
+.genre_buttons button:active {
+  background-color: #555; /* Changes background color when clicked */
+}
+
+.genre_buttons button:focus {
+  outline: none; /* Removes focus outline */
+}
+
+
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .movies {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search_nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .title {
+    padding-right: 0;
+  }
+
+  .search_box {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .search_box input {
+    width: 80%;
+  }
+
+  .search_box button {
+    width: 15%;
+  }
+
+  .genre_buttons {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-right: 0;
+  }
 }

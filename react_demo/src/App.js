@@ -53,7 +53,6 @@ function App() {
         <div className="genre_buttons">
           <button onClick={() => handleGenreClick(27)}>Horror</button>
           <button onClick={() => handleGenreClick(16)}>Animation</button>
-          <button onClick={() => handleGenreClick(53)}>Thriller</button>
           <button onClick={() => handleGenreClick(28)}>Action</button>
           <button onClick={() => handleGenreClick(10749)}>Romance</button>
           <button onClick={() => handleGenreClick(12)}>Adventure</button>

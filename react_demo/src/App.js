@@ -7,6 +7,8 @@ function App() {
     "https://api.themoviedb.org/3/movie/popular?api_key=f98deb5d2da96315abf19e36b674a168";
   const API_SEARCH =
     "https://api.themoviedb.org/3/search/movie?api_key=f98deb5d2da96315abf19e36b674a168&query=";
+  const API_GENRE = "https://api.themoviedb.org/3/discover/movie?api_key=f98deb5d2da96315abf19e36b674a168&with_genres=";
+  
   const [movies, setMovies] = useState([]);
   const [term, setTerm] = useState("");
 
@@ -30,6 +32,12 @@ function App() {
     }
   };
 
+  const handleGenreClick = (genreId) => {
+    fetch(API_GENRE + genreId)
+      .then((res) => res.json())
+      .then((data) => setMovies(data.results));
+  };
+
   return (
     <div className="App">
       <div className="search_nav">
@@ -43,11 +51,12 @@ function App() {
           </form>
         </div>
         <div className="genre_buttons">
-          <button>Thriller</button>
-          <button>Action</button>
-          <button>Romance</button>
-          <button>Adventure</button>
-          <button>Comedy</button>
+          <button onClick={() => handleGenreClick(16)}>Animation</button>
+          <button onClick={() => handleGenreClick(53)}>Thriller</button>
+          <button onClick={() => handleGenreClick(28)}>Action</button>
+          <button onClick={() => handleGenreClick(10749)}>Romance</button>
+          <button onClick={() => handleGenreClick(12)}>Adventure</button>
+          <button onClick={() => handleGenreClick(35)}>Comedy</button>
         </div>
       </div>
 

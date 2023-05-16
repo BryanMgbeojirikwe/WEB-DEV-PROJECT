@@ -35,7 +35,7 @@ function App() {
     <div className="App">
       <div className="search_nav">
         <div className="title">
-          <h1>Movie Finder</h1>
+        <h1 onClick={() => window.location.reload()}>Movie Finder</h1>
         </div>
         <div className = 'search_box'>
           <form onSubmit={handleSearch}>

@@ -19,10 +19,18 @@ function App() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    fetch(API_SEARCH + term)
-      .then((res) => res.json())
-      .then((data) => setMovies(data.results));
+    if (term === "") {
+      window.location.reload();
+    } else {
+      fetch(API_SEARCH + term)
+        .then((res) => res.json())
+        .then((data) => {
+          setMovies(data.results);
+          setTerm(""); // Clear the search bar
+        });
+    }
   };
+  
   return (
     <div className="App">
       <div className="search_nav">

@@ -37,6 +37,21 @@
   border: 0;
   outline:0;
   background-color: white;
-  padding: 0.3rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: 0.5rem;
+
   border-radius: 1rem;
+}
+
+.search_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.genre_buttons {
+  display: flex;
+  gap: 10px;
+  margin-right: 10px;
 }

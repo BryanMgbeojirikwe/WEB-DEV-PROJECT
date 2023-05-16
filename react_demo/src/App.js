@@ -9,13 +9,12 @@ function App() {
     "https://api.themoviedb.org/3/search/movie?api_key=f98deb5d2da96315abf19e36b674a168&query=";
   const [movies, setMovies] = useState([]);
   const [term, setTerm] = useState("");
+
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())
       .then((data) => setMovies(data.results));
   }, []);
-
-  console.log(movies);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -30,18 +29,25 @@ function App() {
         });
     }
   };
-  
+
   return (
     <div className="App">
       <div className="search_nav">
         <div className="title">
-        <h1 onClick={() => window.location.reload()}>Movie Finder</h1>
+          <h1 onClick={() => window.location.reload()}>Movie Finder</h1>
         </div>
-        <div className = 'search_box'>
+        <div className="search_box">
           <form onSubmit={handleSearch}>
             <input onChange={(e) => setTerm(e.target.value)} />
             <button>Search</button>
           </form>
+        </div>
+        <div className="genre_buttons">
+          <button>Thriller</button>
+          <button>Action</button>
+          <button>Romance</button>
+          <button>Adventure</button>
+          <button>Comedy</button>
         </div>
       </div>
 

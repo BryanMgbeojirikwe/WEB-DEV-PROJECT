@@ -1,21 +1,27 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import MovieCard from "./MovieCard";
+import Cookies from "js-cookie";
 
 function App() {
-  const API_URL =
-    "https://api.themoviedb.org/3/movie/popular?api_key=f98deb5d2da96315abf19e36b674a168";
-  const API_SEARCH =
-    "https://api.themoviedb.org/3/search/movie?api_key=f98deb5d2da96315abf19e36b674a168&query=";
-  const API_GENRE = "https://api.themoviedb.org/3/discover/movie?api_key=f98deb5d2da96315abf19e36b674a168&with_genres=";
-  
   const [movies, setMovies] = useState([]);
   const [term, setTerm] = useState("");
 
   useEffect(() => {
-    fetch(API_URL)
+    fetch("/api/movies")
       .then((res) => res.json())
-      .then((data) => setMovies(data.results));
+      .then((data) => setMovies(data))
+      .catch((error) => console.error("Error:", error));
+  }, []);
+
+  useEffect(() => {
+    const storedSearchTerm = Cookies.get("searchTerm");
+    if (storedSearchTerm) {
+      fetch(`/api/movies/search?term=${encodeURIComponent(storedSearchTerm)}`)
+        .then((res) => res.json())
+        .then((data) => setMovies(data))
+        .catch((error) => console.error("Error:", error));
+    }
   }, []);
 
   const handleSearch = (e) => {
@@ -23,19 +29,21 @@ function App() {
     if (term === "") {
       window.location.reload();
     } else {
-      fetch(API_SEARCH + term)
+      fetch(`/api/movies/search?term=${encodeURIComponent(term)}`)
         .then((res) => res.json())
         .then((data) => {
-          setMovies(data.results);
+          setMovies(data);
           setTerm(""); // Clear the search bar
-        });
+        })
+        .catch((error) => console.error("Error:", error));
     }
   };
 
   const handleGenreClick = (genreId) => {
-    fetch(API_GENRE + genreId)
+    fetch(`/api/movies/genre/${genreId}`)
       .then((res) => res.json())
-      .then((data) => setMovies(data.results));
+      .then((data) => setMovies(data))
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
@@ -62,7 +70,7 @@ function App() {
 
       <div className="movies">
         {movies.map((movie) => (
-          <MovieCard {...movie} />
+          <MovieCard key={movie.id} {...movie} />
         ))}
       </div>
     </div>

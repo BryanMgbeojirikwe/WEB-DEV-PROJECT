@@ -6,7 +6,7 @@ const Cookies = require("js-cookie");
 
 const app = express();
 app.use(express.json());
-const port = 3000;
+const port = 5000;
 
 // Serve the static files from the React app
 app.use(express.static(path.join(__dirname, "build")));
